@@ -31,7 +31,7 @@ var Ractive = require('ractive');
 
 var __options__ = {
 	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",a:{"class":"add-post"},f:[{p:[2,2,24],t:7,e:"h2",f:["Add a Post"]}," ",{p:[3,2,45],t:7,e:"button",v:{tap:"close"},f:["Close"]}," ",{p:[5,2,85],t:7,e:"div",f:[{p:[6,3,93],t:7,e:"label",f:["Name: ",{p:[6,16,106],t:7,e:"input",a:{value:[{t:2,r:"username",p:[6,30,120]}]}}]}]}," ",{p:[8,2,152],t:7,e:"div",f:[{p:[9,3,160],t:7,e:"textarea",a:{value:[{t:2,r:"post",p:[9,20,177]}]}}]}," ",{p:[11,2,208],t:7,e:"div",f:[{p:[12,3,216],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add"]}]}]}]},
-	css:".add-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}input{width:200px}textarea{width:90%;height:100px}div{margin:5px;width:100%}",
+	css:"body{font-family:sans-serif}.add-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}input{width:200px}textarea{width:90%;height:100px}div{margin:5px;width:100%}",
 },
 component={},
 __prop__,
@@ -75,7 +75,7 @@ var Ractive = require('ractive');
 
 var __options__ = {
 	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[2,1,30],t:7,e:"div",a:{"class":"logo"},f:[{p:[3,2,50],t:7,e:"img",a:{src:"images/logo.png"}}]}," ",{p:[5,1,86],t:7,e:"div",f:[{p:[6,2,93],t:7,e:"button",v:{tap:{m:"addPost",a:{r:[],s:"[]"}}},f:["Add A New Post"]}]}," ",{t:4,f:[{p:[10,2,172],t:7,e:"add-post"}],n:50,r:"addingPost",p:[9,1,152]},{t:4,f:[{p:[14,2,214],t:7,e:"view-post",a:{post:[{t:2,r:"selectedPost",p:[14,19,231]}]}}],n:50,r:"viewingPost",p:[13,1,193]},{t:4,f:[{p:[18,1,276],t:7,e:"li",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},f:[{p:[19,2,307],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"user"},f:["Rank: ",{t:2,r:"rank",p:[19,50,355]}]}," ",{p:[20,2,371],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},f:["User: ",{t:2,r:"username",p:[20,37,406]}]}," ",{p:[21,2,426],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"post"},f:[{t:2,r:"post",p:[21,44,468]}]}]}],n:52,r:"posts",p:[17,1,260]}]},
-	css:"h1{color:#4682b4}li{text-decoration:underline;cursor:pointer;border:1px solid #4682b4;margin:5px}.post{height:75px;overflow:hidden}.logo{width:200px;text-align:center;margin:auto}.logo img{width:100%;height:auto}",
+	css:"body{position:absolute;top:0;bottom:0;left:0;right:0;overflow:auto}h1{color:#4682b4}li{text-decoration:underline;cursor:pointer;border:1px solid #4682b4;margin:5px}.post{height:75px;overflow:hidden}.logo{width:200px;text-align:center;margin:auto}.logo img{width:100%;height:auto}",
 },
 component={},
 __prop__,
@@ -353,8 +353,8 @@ module.exports = upper
 var Ractive = require('ractive');
 
 var __options__ = {
-	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",t0:"fade",a:{"class":"view-post"},f:[{t:4,f:[{p:[3,2,59],t:7,e:"h2",f:[{t:2,r:"username",p:[3,7,64]},": ",{t:2,r:"rank",p:[3,21,78]}]}," ",{p:[4,2,93],t:7,e:"p",f:[{t:2,r:"post",p:[4,5,96]}]}],n:53,r:"post",p:[2,1,43]},{p:[7,1,120],t:7,e:"img",v:{tap:{m:"upvote",a:{r:[],s:"[]"}}},a:{src:"http://i.imgur.com/Hc6TJVN.png"}}," ",{p:[8,1,182],t:7,e:"img",v:{tap:{m:"downvote",a:{r:[],s:"[]"}}},a:{src:"http://i.imgur.com/SJ5iTUs.png"}}," ",{p:[9,1,245],t:7,e:"div",f:[{p:[10,2,252],t:7,e:"input",a:{value:[{t:2,r:"~/comment",p:[10,16,266]}]}}," ",{p:[11,2,283],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add Comment"]}]}," ",{t:4,f:[{p:[15,2,355],t:7,e:"li",f:[{t:2,r:"value",p:[15,6,359]}]}],n:52,r:"comments",p:[14,1,335]},{p:[18,1,385],t:7,e:"button",v:{tap:"close"},f:["Close"]}]}]},
-	css:".view-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}",
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",t0:"fade",a:{"class":"view-post"},f:[{p:[2,2,44],t:7,e:"button",a:{"class":"close"},v:{tap:"close"},f:["Close"]}," ",{t:4,f:[{p:[4,3,114],t:7,e:"h2",f:["User: ",{t:2,r:"username",p:[4,13,124]}]}," ",{p:[5,3,144],t:7,e:"h3",f:["Post:"]}," ",{p:[6,3,161],t:7,e:"p",f:[{t:2,r:"post",p:[6,6,164]}]}," ",{p:[7,3,179],t:7,e:"div",f:["Rank: ",{p:[7,14,190],t:7,e:"strong",f:[{t:2,r:"rank",p:[7,22,198]}]}]}],n:53,r:"post",p:[3,2,97]}," ",{p:[9,2,234],t:7,e:"div",f:[{p:[10,3,242],t:7,e:"h3",f:["Up or Down Vote:"]}," ",{p:[11,3,270],t:7,e:"img",a:{title:"up vote",src:"http://i.imgur.com/Hc6TJVN.png"},v:{tap:{m:"upvote",a:{r:[],s:"[]"}}}}," ",{p:[12,3,350],t:7,e:"img",a:{title:"down vote",src:"http://i.imgur.com/SJ5iTUs.png"},v:{tap:{m:"downvote",a:{r:[],s:"[]"}}}}]}," ",{p:[14,2,440],t:7,e:"div",f:[{p:[15,3,448],t:7,e:"textarea",a:{value:[{t:2,r:"~/comment",p:[15,20,465]}]}}," ",{p:[16,3,494],t:7,e:"br"}," ",{p:[17,3,501],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add Comment"]}]}," ",{p:[20,2,555],t:7,e:"h3",f:["Comments:"]}," ",{p:[21,2,575],t:7,e:"ul",f:[{t:4,f:[{p:[23,3,602],t:7,e:"li",f:[{t:2,r:"value",p:[23,7,606]}]}],n:52,r:"comments",p:[22,2,581]}]}]}]},
+	css:"li,p{padding:5px}.view-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5;overflow:auto}.close{float:right}textarea{width:200px;height:100px}p{border:1px solid #4682b4;background:rgba(176,196,222,.2)}div,ul{list-style:none;margin:5px;padding:0}",
 },
 component={},
 __prop__,
