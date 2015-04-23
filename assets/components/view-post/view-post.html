@@ -1,0 +1,18 @@
+<div intro-outro='fade' class='view-post'>
+{{#with post}}
+	<h2> {{username}}: </h2>
+	<p>{{post}}</p>
+	{{console.log(this)}}
+{{/with}}
+
+<div>
+	<input value='{{comment}}'>
+	<button on-tap='add()'>Add Comment</button>
+</div>
+
+{{#each comments}}
+	<li>{{value}}</li>
+{{/each}}
+
+<button on-tap='close'>Close</button>
+</div>

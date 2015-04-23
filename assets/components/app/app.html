@@ -1,3 +1,29 @@
-<h1>Ractive Starter Project</h1>
-<p>Hello World</p>
-<widget></widget>
+<h1>PPS Connect PDX FTW!</h1>
+<div class='logo'>
+	<img src='images/logo.png'/>
+</div>
+<div>
+	<button on-tap='addPost()'>Add A New Post</button>
+</div>
+
+{{#if addingPost}}
+	<add-post/>
+{{/if}}
+
+{{#if viewingPost}}
+	<view-post post='{{selectedPost}}'/>
+{{/if}}
+
+{{#each posts}}
+<li>
+	<div on-tap='viewPost(this)' class='post'>{{post}}</div>
+	<div class='user'>{{username}}</div>
+</li>
+{{/each}}
+
+<!-- add new posts -->
+<!--
+<input value='{{message}}'>
+<button on-tap='add(message)'>Add</button>
+-->
+<!-- show post and allow comments -->
