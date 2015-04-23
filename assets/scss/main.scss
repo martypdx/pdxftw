@@ -1,0 +1,16 @@
+/*
+ * see the cordova docs for standard css
+ */
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {               /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: whitesmoke;
+    font-family: sans-serif;
+}
+
+.app {
+
+}
