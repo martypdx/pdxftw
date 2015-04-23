@@ -14,10 +14,6 @@ Ractive.events.tap = tap;
 var fb = new Firebase('https://pdxftw.firebaseio.com/'),
 	messages = fb.child('messages');
 
-	// messages.push('hello world');
-	// messages.push('hello codefellows');
-	// messages.push('hello ppsconnect');
-
 new App({
     el: document.body,
     data: {
@@ -30,7 +26,7 @@ new App({
 var Ractive = require('ractive');
 
 var __options__ = {
-	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[2,1,30],t:7,e:"p",f:["Hello World"]}," ",{t:4,f:[{p:[4,1,63],t:7,e:"li",f:[{t:2,r:"value",p:[4,5,67]}]}],r:"messages",p:[3,1,49]},{p:[7,1,98],t:7,e:"input",a:{value:[{t:2,r:"message",p:[7,15,112]}]}}," ",{p:[8,1,126],t:7,e:"button",v:{click:{m:"add",a:{r:["message"],s:"[_0]"}}},f:["Add"]}]},
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[3,1,31],t:7,e:"p",f:["Hello PDX"]}," ",{t:4,f:[{p:[6,1,63],t:7,e:"li",f:[{t:2,r:"value",p:[6,5,67]}]}],r:"messages",p:[5,1,49]},{p:[9,1,98],t:7,e:"input",a:{value:[{t:2,r:"message",p:[9,15,112]}]}}," ",{p:[10,1,126],t:7,e:"button",v:{click:{m:"add",a:{r:["message"],s:"[_0]"}}},f:["Add"]}]},
 	css:"h1{color:#4682b4}",
 },
 component={},
@@ -41,6 +37,8 @@ __export__;
 component.exports = {
 	add: function(message){
 		this.get('messages').$add(message);
+		this.set('message');
+		window.location = 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=7&cad=rja&uact=8&ved=0CD8QtwIwBg&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&ei=fBw5VdiVM4yzogSpmYD4Ag&usg=AFQjCNG7el8GOsX8SUPmhUksMRzOa9FzwQ&sig2=tftt_QpWsv2tQ71hbFKs5g';
 	}
 }
 
