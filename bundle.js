@@ -5,29 +5,77 @@ var App = require('./app');
 var Ractive = require('ractive');
 var Components = require('./components');
 var tap = require('ractive-events-tap');
+var fade = require('ractive-transitions-fade');
 var Firebase = require('firebase');
 var getAsArray = require('./firebase-as-array');
 
 
 Ractive.events.tap = tap;
+Ractive.transitions.fade = fade;
 
-var fb = new Firebase('https://pdxftw.firebaseio.com/'),
+var fb = Ractive.prototype.fb = new Firebase('https://pdxftw.firebaseio.com/'),
+	posts = fb.child('posts'),
 	messages = fb.child('messages');
 
 new App({
     el: document.body,
     data: {
-    	messages: getAsArray(messages)
+    	posts: getAsArray(posts)
+    	// messages: getAsArray(messages)
     }
 });
 
 //# sourceMappingURL=/Users/marty/cfkids/pdxftw/.gobble-build/03-esperanto/1/index.js.map
-},{"./app":2,"./components":3,"./firebase-as-array":4,"firebase":7,"ractive":10,"ractive-events-tap":8}],2:[function(require,module,exports){
+},{"./app":3,"./components":4,"./firebase-as-array":5,"firebase":9,"ractive":12,"ractive-events-tap":10,"ractive-transitions-fade":11}],2:[function(require,module,exports){
 var Ractive = require('ractive');
 
 var __options__ = {
-	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[3,1,31],t:7,e:"p",f:["Hello PDX"]}," ",{t:4,f:[{p:[6,1,63],t:7,e:"li",f:[{t:2,r:"value",p:[6,5,67]}]}],r:"messages",p:[5,1,49]},{p:[9,1,98],t:7,e:"input",a:{value:[{t:2,r:"message",p:[9,15,112]}]}}," ",{p:[10,1,126],t:7,e:"button",v:{click:{m:"add",a:{r:["message"],s:"[_0]"}}},f:["Add"]}]},
-	css:"h1{color:#4682b4}",
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",a:{"class":"add-post"},f:[{p:[2,2,24],t:7,e:"h2",f:["Add a Post"]}," ",{p:[3,2,45],t:7,e:"button",v:{tap:"close"},f:["Close"]}," ",{p:[5,2,85],t:7,e:"div",f:[{p:[6,3,93],t:7,e:"label",f:["Name: ",{p:[6,16,106],t:7,e:"input",a:{value:[{t:2,r:"username",p:[6,30,120]}]}}]}]}," ",{p:[8,2,152],t:7,e:"div",f:[{p:[9,3,160],t:7,e:"textarea",a:{value:[{t:2,r:"post",p:[9,20,177]}]}}]}," ",{p:[11,2,208],t:7,e:"div",f:[{p:[12,3,216],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add"]}]}]}]},
+	css:".add-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}input{width:200px}textarea{width:90%;height:100px}div{margin:5px;width:100%}",
+},
+component={},
+__prop__,
+__export__;
+'use strict';
+
+component.exports = {
+	add: function(){
+		var name = this.get('username'),
+			post = this.get('post'),
+			posts = this.get('posts');
+
+		if ( !name || !post ) {
+			alert('♡ name and post must be provided! ♡');
+			return;
+		}
+
+		posts.$add({
+			username: name,
+			post: post
+		});
+
+		this.fire('close');
+	}
+}
+
+//# sourceMappingURL=/Users/marty/cfkids/pdxftw/.gobble-build/12-esperanto/1/add-post/add-post.js.map
+
+if ( typeof component.exports === "object" ) {
+	for ( __prop__ in component.exports ) {
+		if ( component.exports.hasOwnProperty(__prop__) ) {
+			__options__[__prop__] = component.exports[__prop__];
+		}
+	}
+}
+
+__export__ = Ractive.extend( __options__ );
+module.exports = __export__;
+},{"ractive":12}],3:[function(require,module,exports){
+var Ractive = require('ractive');
+
+var __options__ = {
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[2,1,30],t:7,e:"div",a:{"class":"logo"},f:[{p:[3,2,50],t:7,e:"img",a:{src:"images/logo.png"}}]}," ",{p:[5,1,86],t:7,e:"div",f:[{p:[6,2,93],t:7,e:"button",v:{tap:{m:"addPost",a:{r:[],s:"[]"}}},f:["Add A New Post"]}]}," ",{t:4,f:[{p:[10,2,172],t:7,e:"add-post"}],n:50,r:"addingPost",p:[9,1,152]},{t:4,f:[{p:[14,2,214],t:7,e:"view-post",a:{post:[{t:2,r:"selectedPost",p:[14,19,231]}]}}],n:50,r:"viewingPost",p:[13,1,193]},{t:4,f:[{p:[18,1,276],t:7,e:"li",f:[{p:[19,2,282],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"post"},f:[{t:2,r:"post",p:[19,44,324]}]}," ",{p:[20,2,340],t:7,e:"div",a:{"class":"user"},f:[{t:2,r:"username",p:[20,20,358]}]}]}],n:52,r:"posts",p:[17,1,260]}]},
+	css:"h1{color:#4682b4}.post{text-decoration:underline;cursor:pointer;overflow:hidden}.logo{width:200px;text-align:center;margin:auto}.logo img{width:100%;height:auto}",
 },
 component={},
 __prop__,
@@ -38,7 +86,22 @@ component.exports = {
 	add: function(message){
 		this.get('messages').$add(message);
 		this.set('message');
-		window.location = 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=7&cad=rja&uact=8&ved=0CD8QtwIwBg&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&ei=fBw5VdiVM4yzogSpmYD4Ag&usg=AFQjCNG7el8GOsX8SUPmhUksMRzOa9FzwQ&sig2=tftt_QpWsv2tQ71hbFKs5g';
+		// window.location = 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=7&cad=rja&uact=8&ved=0CD8QtwIwBg&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&ei=fBw5VdiVM4yzogSpmYD4Ag&usg=AFQjCNG7el8GOsX8SUPmhUksMRzOa9FzwQ&sig2=tftt_QpWsv2tQ71hbFKs5g';
+	},
+	addPost: function(){
+		this.set('addingPost', true);
+	},
+	viewPost: function() {
+		this.set('selectedPost', this.event.context)
+		this.set('viewingPost', true);
+	},
+	oninit: function(){
+		this.on('add-post.close', function(){
+			this.set('addingPost', false);
+		});
+		this.on('view-post.close', function(){
+			this.set('viewingPost', false);
+		})
 	}
 }
 
@@ -54,13 +117,15 @@ if ( typeof component.exports === "object" ) {
 
 __export__ = Ractive.extend( __options__ );
 module.exports = __export__;
-},{"ractive":10}],3:[function(require,module,exports){
+},{"ractive":12}],4:[function(require,module,exports){
 var Ractive = require('ractive');
 
+Ractive.components['add-post'] = require('./add-post');
 Ractive.components['app'] = require('./app');
+Ractive.components['view-post'] = require('./view-post');
 Ractive.components['widget'] = require('./widget');
 
-},{"./app":2,"./widget":6,"ractive":10}],4:[function(require,module,exports){
+},{"./add-post":2,"./app":3,"./view-post":7,"./widget":8,"ractive":12}],5:[function(require,module,exports){
 'use strict';
 
 /*! Firebase.getAsArray - v0.1.0 - 2014-04-21
@@ -275,7 +340,7 @@ module.exports = getAsArray;;
   }
 
 //# sourceMappingURL=/Users/marty/cfkids/pdxftw/.gobble-build/03-esperanto/1/firebase-as-array.js.map
-},{"firebase":7}],5:[function(require,module,exports){
+},{"firebase":9}],6:[function(require,module,exports){
 'use strict';
 
 function upper(str) {
@@ -284,7 +349,52 @@ function upper(str) {
 module.exports = upper
 
 //# sourceMappingURL=/Users/marty/cfkids/pdxftw/.gobble-build/03-esperanto/1/upper-caser.js.map
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
+var Ractive = require('ractive');
+
+var __options__ = {
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",t0:"fade",a:{"class":"view-post"},f:[{t:4,f:[{p:[3,2,59],t:7,e:"h2",f:[{t:2,r:"username",p:[3,7,64]},":"]}," ",{p:[4,2,85],t:7,e:"p",f:[{t:2,r:"post",p:[4,5,88]}]}," ",{t:2,x:{r:["."],s:"console.log(_0)"},p:[5,2,102]}],n:53,r:"post",p:[2,1,43]},{p:[8,1,135],t:7,e:"div",f:[{p:[9,2,142],t:7,e:"input",a:{value:[{t:2,r:"comment",p:[9,16,156]}]}}," ",{p:[10,2,171],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add Comment"]}]}," ",{t:4,f:[{p:[14,2,243],t:7,e:"li",f:[{t:2,r:"value",p:[14,6,247]}]}],n:52,r:"comments",p:[13,1,223]},{p:[17,1,273],t:7,e:"button",v:{tap:"close"},f:["Close"]}]}]},
+	css:".view-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}",
+},
+component={},
+__prop__,
+__export__;
+'use strict';
+
+var getAsArray = require('./firebase-as-array');
+
+component.exports = {
+	oninit: function(){
+		var comments = this.fb.child('comments').child(this.get('post.$id'));
+		this.set( 'comments', getAsArray(comments) );
+	},
+	add: function(){
+		var comment = this.get('comment')
+
+		if ( !comment ) {
+			alert('♡ comment must be provided! ♡');
+			return;
+		}
+
+		this.get('comments').$add(comment);
+
+		this.set('comment');
+	}
+}
+
+//# sourceMappingURL=/Users/marty/cfkids/pdxftw/.gobble-build/12-esperanto/1/view-post/view-post.js.map
+
+if ( typeof component.exports === "object" ) {
+	for ( __prop__ in component.exports ) {
+		if ( component.exports.hasOwnProperty(__prop__) ) {
+			__options__[__prop__] = component.exports[__prop__];
+		}
+	}
+}
+
+__export__ = Ractive.extend( __options__ );
+module.exports = __export__;
+},{"./firebase-as-array":5,"ractive":12}],8:[function(require,module,exports){
 var Ractive = require('ractive');
 
 var __options__ = {
@@ -325,7 +435,7 @@ if ( typeof component.exports === "object" ) {
 
 __export__ = Ractive.extend( __options__ );
 module.exports = __export__;
-},{"./upper-caser":5,"ractive":10,"ractive-transitions-fade":9}],7:[function(require,module,exports){
+},{"./upper-caser":6,"ractive":12,"ractive-transitions-fade":11}],9:[function(require,module,exports){
 /*! @license Firebase v2.2.4
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function() {var h,aa=this;function n(a){return void 0!==a}function ba(){}function ca(a){a.ub=function(){return a.tf?a.tf:a.tf=new a}}
@@ -591,7 +701,7 @@ function Nc(a,b){J(!b||!0===a||!1===a,"Can't turn on custom loggers persistently
 
 module.exports = Firebase;
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -809,7 +919,7 @@ module.exports = Firebase;
 	return ractive_events_tap;
 
 }));
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -840,7 +950,7 @@ module.exports = Firebase;
 	return ractive_transitions_fade;
 
 }));
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*
 	Ractive.js v0.7.2
 	Thu Apr 02 2015 13:53:56 GMT-0400 (EDT) - commit 8bae4689db1bb54ce0804697b66c658639a53e93
