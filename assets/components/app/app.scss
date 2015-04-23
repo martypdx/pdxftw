@@ -2,9 +2,15 @@ h1 {
 	color: steelblue;
 }
 
-.post {
+li {
 	text-decoration: underline;
 	cursor: pointer;
+	border: 1px solid steelblue;
+	margin: 5px;
+}
+
+.post {
+	height: 75px;
 	overflow: hidden;
 }
 

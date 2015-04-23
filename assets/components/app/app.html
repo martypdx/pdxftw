@@ -15,9 +15,10 @@
 {{/if}}
 
 {{#each posts}}
-<li>
+<li on-tap='viewPost(this)' >
+	<div on-tap='viewPost(this)' class='user'>Rank: {{rank}}</div>
+	<div on-tap='viewPost(this)'>User: {{username}}</div>
 	<div on-tap='viewPost(this)' class='post'>{{post}}</div>
-	<div class='user'>{{username}}</div>
 </li>
 {{/each}}
 
