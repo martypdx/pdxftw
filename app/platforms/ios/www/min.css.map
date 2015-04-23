@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "assets/scss/main.css",
+	"sources": [
+		"assets/scss/main.scss"
+	],
+	"sourcesContent": [
+		"/*\n * see the cordova docs for standard css\n */\n\n* {\n    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */\n}\n\nbody {               /* prevent copy paste, to allow, change 'none' to 'text' */\n    background-color: whitesmoke;\n    font-family: sans-serif;\n}\n\n.app {\n\n}\n"
+	],
+	"mappings": ";;;AAIA;EACI,AAA6B;;;AAGjC;;EACI,AAAkB;EAClB,AAAa",
+	"names": []
+}
