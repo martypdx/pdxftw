@@ -74,8 +74,8 @@ module.exports = __export__;
 var Ractive = require('ractive');
 
 var __options__ = {
-	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[2,1,30],t:7,e:"div",a:{"class":"logo"},f:[{p:[3,2,50],t:7,e:"img",a:{src:"images/logo.png"}}]}," ",{p:[5,1,86],t:7,e:"div",f:[{p:[6,2,93],t:7,e:"button",v:{tap:{m:"addPost",a:{r:[],s:"[]"}}},f:["Add A New Post"]}]}," ",{t:4,f:[{p:[10,2,172],t:7,e:"add-post"}],n:50,r:"addingPost",p:[9,1,152]},{t:4,f:[{p:[14,2,214],t:7,e:"view-post",a:{post:[{t:2,r:"selectedPost",p:[14,19,231]}]}}],n:50,r:"viewingPost",p:[13,1,193]},{t:4,f:[{p:[18,1,276],t:7,e:"li",f:[{p:[19,2,282],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"post"},f:[{t:2,r:"post",p:[19,44,324]}]}," ",{p:[20,2,340],t:7,e:"div",a:{"class":"user"},f:[{t:2,r:"username",p:[20,20,358]}]}]}],n:52,r:"posts",p:[17,1,260]}]},
-	css:"h1{color:#4682b4}.post{text-decoration:underline;cursor:pointer;overflow:hidden}.logo{width:200px;text-align:center;margin:auto}.logo img{width:100%;height:auto}",
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"h1",f:["PPS Connect PDX FTW!"]}," ",{p:[2,1,30],t:7,e:"div",a:{"class":"logo"},f:[{p:[3,2,50],t:7,e:"img",a:{src:"images/logo.png"}}]}," ",{p:[5,1,86],t:7,e:"div",f:[{p:[6,2,93],t:7,e:"button",v:{tap:{m:"addPost",a:{r:[],s:"[]"}}},f:["Add A New Post"]}]}," ",{t:4,f:[{p:[10,2,172],t:7,e:"add-post"}],n:50,r:"addingPost",p:[9,1,152]},{t:4,f:[{p:[14,2,214],t:7,e:"view-post",a:{post:[{t:2,r:"selectedPost",p:[14,19,231]}]}}],n:50,r:"viewingPost",p:[13,1,193]},{t:4,f:[{p:[18,1,276],t:7,e:"li",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},f:[{p:[19,2,307],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"user"},f:["Rank: ",{t:2,r:"rank",p:[19,50,355]}]}," ",{p:[20,2,371],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},f:["User: ",{t:2,r:"username",p:[20,37,406]}]}," ",{p:[21,2,426],t:7,e:"div",v:{tap:{m:"viewPost",a:{r:["."],s:"[_0]"}}},a:{"class":"post"},f:[{t:2,r:"post",p:[21,44,468]}]}]}],n:52,r:"posts",p:[17,1,260]}]},
+	css:"h1{color:#4682b4}li{text-decoration:underline;cursor:pointer;border:1px solid #4682b4;margin:5px}.post{height:75px;overflow:hidden}.logo{width:200px;text-align:center;margin:auto}.logo img{width:100%;height:auto}",
 },
 component={},
 __prop__,
@@ -353,7 +353,7 @@ module.exports = upper
 var Ractive = require('ractive');
 
 var __options__ = {
-	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",t0:"fade",a:{"class":"view-post"},f:[{t:4,f:[{p:[3,2,59],t:7,e:"h2",f:[{t:2,r:"username",p:[3,7,64]},":"]}," ",{p:[4,2,85],t:7,e:"p",f:[{t:2,r:"post",p:[4,5,88]}]}," ",{t:2,x:{r:["."],s:"console.log(_0)"},p:[5,2,102]}],n:53,r:"post",p:[2,1,43]},{p:[8,1,135],t:7,e:"div",f:[{p:[9,2,142],t:7,e:"input",a:{value:[{t:2,r:"comment",p:[9,16,156]}]}}," ",{p:[10,2,171],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add Comment"]}]}," ",{t:4,f:[{p:[14,2,243],t:7,e:"li",f:[{t:2,r:"value",p:[14,6,247]}]}],n:52,r:"comments",p:[13,1,223]},{p:[17,1,273],t:7,e:"button",v:{tap:"close"},f:["Close"]}]}]},
+	template: {v:3,t:[{p:[1,1,0],t:7,e:"div",t0:"fade",a:{"class":"view-post"},f:[{t:4,f:[{p:[3,2,59],t:7,e:"h2",f:[{t:2,r:"username",p:[3,7,64]},": ",{t:2,r:"rank",p:[3,21,78]}]}," ",{p:[4,2,93],t:7,e:"p",f:[{t:3,r:"post",p:[4,5,96]}]}],n:53,r:"post",p:[2,1,43]},{p:[7,1,122],t:7,e:"button",v:{tap:{m:"upvote",a:{r:[],s:"[]"}}},f:["up"]}," ",{p:[8,1,160],t:7,e:"button",v:{tap:{m:"downvote",a:{r:[],s:"[]"}}},f:["down"]}," ",{p:[9,1,202],t:7,e:"div",f:[{p:[10,2,209],t:7,e:"input",a:{value:[{t:2,r:"~/comment",p:[10,16,223]}]}}," ",{p:[11,2,240],t:7,e:"button",v:{tap:{m:"add",a:{r:[],s:"[]"}}},f:["Add Comment"]}]}," ",{t:4,f:[{p:[15,2,312],t:7,e:"li",f:[{t:2,r:"value",p:[15,6,316]}]}],n:52,r:"comments",p:[14,1,292]},{p:[18,1,342],t:7,e:"button",v:{tap:"close"},f:["Close"]}]}]},
 	css:".view-post{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5}",
 },
 component={},
@@ -367,6 +367,10 @@ component.exports = {
 	oninit: function(){
 		var comments = this.fb.child('comments').child(this.get('post.$id'));
 		this.set( 'comments', getAsArray(comments) );
+
+		this.fb.child('posts').child(this.get('post.$id')).child('rank').on('value', function(ss){
+			this.set('post.rank', ss.val());
+		}.bind(this));
 	},
 	add: function(){
 		var comment = this.get('comment')
@@ -379,6 +383,20 @@ component.exports = {
 		this.get('comments').$add(comment);
 
 		this.set('comment');
+	},
+	upvote: function(){
+		var postId = this.get('post.$id');
+		var rank = this.fb.child('posts').child(postId).child('rank');
+		rank.transaction(function(currentRank) {
+		  return (currentRank || 0)+1;
+		});
+	},
+	downvote: function(){
+		var postId = this.get('post.$id');
+		var rank = this.fb.child('posts').child(postId).child('rank');
+		rank.transaction(function(currentRank) {
+		  return (currentRank || 0)-1;
+		});
 	}
 }
 
